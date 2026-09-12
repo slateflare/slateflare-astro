@@ -1,0 +1,81 @@
+<form class="mt-8 space-y-5">
+  <div>
+    <label for="name" class="mb-2 block text-sm font-medium text-text">
+      Name
+    </label>
+    <input
+      id="name"
+      name="name"
+      type="text"
+      required
+      autocomplete="name"
+      placeholder="Your name"
+      class="w-full rounded-lg border border-border bg-surface px-4 py-3 text-text outline-none transition placeholder:text-muted focus:border-flare focus:ring-2 focus:ring-flare/20"
+    />
+  </div>
+
+  <div>
+    <label for="email" class="mb-2 block text-sm font-medium text-text">
+      Email
+    </label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      required
+      autocomplete="email"
+      placeholder="you@example.com"
+      class="w-full rounded-lg border border-border bg-surface px-4 py-3 text-text outline-none transition placeholder:text-muted focus:border-flare focus:ring-2 focus:ring-flare/20"
+    />
+  </div>
+
+  <div>
+    <label for="business" class="mb-2 block text-sm font-medium text-text">
+      Business / Project
+    </label>
+    <input
+      id="business"
+      name="business"
+      type="text"
+      placeholder="Your business or project name"
+      class="w-full rounded-lg border border-border bg-surface px-4 py-3 text-text outline-none transition placeholder:text-muted focus:border-flare focus:ring-2 focus:ring-flare/20"
+    />
+  </div>
+
+  <div>
+    <label for="service" class="mb-2 block text-sm font-medium text-text">
+      What do you need?
+    </label>
+    <select
+      id="service"
+      name="service"
+      class="w-full rounded-lg border border-border bg-surface px-4 py-3 text-text outline-none transition focus:border-flare focus:ring-2 focus:ring-flare/20"
+    >
+      <option value="">Select an option</option>
+      <option value="landing-page">Landing page</option>
+      <option value="website-redesign">Website redesign</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="message" class="mb-2 block text-sm font-medium text-text">
+      Tell us about your project
+    </label>
+    <textarea
+      id="message"
+      name="message"
+      rows="6"
+      required
+      placeholder="What are you looking to build?"
+      class="w-full resize-none rounded-lg border border-border bg-surface px-4 py-3 text-text outline-none transition placeholder:text-muted focus:border-flare focus:ring-2 focus:ring-flare/20"
+    ></textarea>
+  </div>
+
+  <button
+    type="submit"
+    class="w-full rounded-lg bg-flare px-6 py-3.5 font-semibold text-white transition hover:bg-flare-dark focus:outline-none focus:ring-2 focus:ring-flare focus:ring-offset-2"
+  >
+    Send Message
+  </button>
+</form>
