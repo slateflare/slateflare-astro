@@ -3,7 +3,6 @@ import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import ArticleCard from "../../components/ArticleCard.astro";
-import PostHogLayout from "../../layouts/PostHogLayout.astro";
 
 const allBlogArticles: CollectionEntry<"blog">[] = (
   await getCollection("blog")
@@ -15,163 +14,154 @@ const allBlogArticles: CollectionEntry<"blog">[] = (
 const recentBlogArticle = allBlogArticles[0];
 ---
 
-<PostHogLayout>
-  <Layout>
-    <section class="bg-background px-6 py-20 md:py-24">
-      <div class="mx-auto max-w-7xl">
-        <header class="mx-auto max-w-3xl text-center">
-          <p
-            class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-flare"
+<Layout>
+  <section class="bg-background px-6 py-20 md:py-24">
+    <div class="mx-auto max-w-7xl">
+      <header class="mx-auto max-w-3xl text-center">
+        <p
+          class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-flare"
+        >
+          SlateFlare Blog
+        </p>
+
+        <h1 class="text-4xl font-bold tracking-tight text-text md:text-5xl">
+          Insights for building better websites.
+        </h1>
+
+        <p class="mt-5 text-lg leading-8 text-muted">
+          Practical insights on landing pages, web design, performance,
+          conversion, and building a stronger online presence.
+        </p>
+      </header>
+
+      <div class="mx-auto mt-10 max-w-2xl">
+        <form action="/blog" method="get" class="relative">
+          <label for="blog-search" class="sr-only"> Search articles </label>
+
+          <input
+            id="blog-search"
+            name="q"
+            type="search"
+            placeholder="Search articles..."
+            class="w-full rounded-xl border border-border bg-surface py-4 pl-12 pr-5 text-text shadow-sm outline-none transition placeholder:text-muted focus:border-flare focus:ring-2 focus:ring-flare/20"
+          />
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted"
+            aria-hidden="true"
           >
-            SlateFlare Blog
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+        </form>
+      </div>
+
+      <section class="mt-16" aria-labelledby="recent-article">
+        <div class="mb-6">
+          <p
+            id="recent-article"
+            class="text-sm font-semibold uppercase tracking-[0.15em] text-flare"
+          >
+            Recent article
           </p>
-
-          <h1 class="text-4xl font-bold tracking-tight text-text md:text-5xl">
-            Insights for building better websites.
-          </h1>
-
-          <p class="mt-5 text-lg leading-8 text-muted">
-            Practical insights on landing pages, web design, performance,
-            conversion, and building a stronger online presence.
-          </p>
-        </header>
-
-        <div class="mx-auto mt-10 max-w-2xl">
-          <form action="/blog" method="get" class="relative">
-            <label for="blog-search" class="sr-only"> Search articles </label>
-
-            <input
-              id="blog-search"
-              name="q"
-              type="search"
-              placeholder="Search articles..."
-              class="w-full rounded-xl border border-border bg-surface py-4 pl-12 pr-5 text-text shadow-sm outline-none transition placeholder:text-muted focus:border-flare focus:ring-2 focus:ring-flare/20"
-            />
-
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted"
-              aria-hidden="true"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.3-4.3"></path>
-            </svg>
-          </form>
         </div>
 
-        <section class="mt-16" aria-labelledby="recent-article">
-          <div class="mb-6">
-            <p
-              id="recent-article"
-              class="text-sm font-semibold uppercase tracking-[0.15em] text-flare"
+        <article
+          class="overflow-hidden rounded-2xl border border-border bg-surface shadow-sm"
+        >
+          <div class="grid lg:grid-cols-2">
+            <a
+              href={"/articles/" + recentBlogArticle.data.slug}
+              class="group block overflow-hidden"
             >
-              Recent article
-            </p>
-          </div>
+              <div class="aspect-16/10 h-full min-h-75 overflow-hidden">
+                <img
+                  src={recentBlogArticle.data.image}
+                  alt="Web designer working on a website"
+                  class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+              </div>
+            </a>
 
-          <article
-            class="overflow-hidden rounded-2xl border border-border bg-surface shadow-sm"
-          >
-            <div class="grid lg:grid-cols-2">
-              <a
-                href={"/articles/" + recentBlogArticle.data.slug}
-                class="group block overflow-hidden"
-              >
-                <div class="aspect-16/10 h-full min-h-75 overflow-hidden">
-                  <img
-                    src={recentBlogArticle.data.image}
-                    alt="Web designer working on a website"
-                    class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                  />
-                </div>
-              </a>
-
-              <div class="flex flex-col justify-center p-8 md:p-12">
-                <div class="flex flex-wrap items-center gap-3">
-                  <span
-                    class="rounded-full bg-flare/10 px-3 py-1 text-xs font-semibold text-flare"
-                  >
-                    {recentBlogArticle.data.tags[0]}
-                  </span>
-
-                  <time datetime="2026-09-10" class="text-sm text-muted">
-                    {
-                      recentBlogArticle.data.pubDate.toLocaleDateString(
-                        "en-US",
-                        {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        },
-                      )
-                    }
-                  </time>
-                </div>
-
-                <h2
-                  class="mt-5 text-3xl font-bold tracking-tight text-text md:text-4xl"
+            <div class="flex flex-col justify-center p-8 md:p-12">
+              <div class="flex flex-wrap items-center gap-3">
+                <span
+                  class="rounded-full bg-flare/10 px-3 py-1 text-xs font-semibold text-flare"
                 >
-                  <a
-                    href={"/articles/" + recentBlogArticle.data.slug}
-                    class="transition hover:text-flare"
-                  >
-                    {recentBlogArticle.data.title}
-                  </a>
-                </h2>
+                  {recentBlogArticle.data.tags[0]}
+                </span>
 
-                <p class="mt-5 leading-7 text-muted">
-                  {recentBlogArticle.data.description}
+                <time datetime="2026-09-10" class="text-sm text-muted">
+                  {
+                    recentBlogArticle.data.pubDate.toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                  }
+                </time>
+              </div>
+
+              <h2
+                class="mt-5 text-3xl font-bold tracking-tight text-text md:text-4xl"
+              >
+                <a
+                  href={"/articles/" + recentBlogArticle.data.slug}
+                  class="transition hover:text-flare"
+                >
+                  {recentBlogArticle.data.title}
+                </a>
+              </h2>
+
+              <p class="mt-5 leading-7 text-muted">
+                {recentBlogArticle.data.description}
+              </p>
+
+              <div class="mt-6 flex items-center justify-between gap-4">
+                <p class="text-sm font-medium text-text">
+                  By {recentBlogArticle.data.author}
                 </p>
 
-                <div class="mt-6 flex items-center justify-between gap-4">
-                  <p class="text-sm font-medium text-text">
-                    By {recentBlogArticle.data.author}
-                  </p>
-
-                  <a
-                    href={"/article/" + recentBlogArticle.data.slug}
-                    class="inline-flex items-center gap-2 font-semibold text-flare transition hover:text-flare-dark"
-                  >
-                    Read article
-                    <span aria-hidden="true">→</span>
-                  </a>
-                </div>
+                <a
+                  href={"/article/" + recentBlogArticle.data.slug}
+                  class="inline-flex items-center gap-2 font-semibold text-flare transition hover:text-flare-dark"
+                >
+                  Read article
+                  <span aria-hidden="true">→</span>
+                </a>
               </div>
             </div>
-          </article>
-        </section>
-
-        <section class="mt-16" aria-labelledby="latest-articles">
-          <div class="mb-8">
-            <p
-              class="text-sm font-semibold uppercase tracking-[0.15em] text-flare"
-            >
-              Latest articles
-            </p>
-
-            <h2
-              id="latest-articles"
-              class="mt-2 text-2xl font-bold tracking-tight text-text md:text-3xl"
-            >
-              Explore our latest insights
-            </h2>
           </div>
+        </article>
+      </section>
 
-          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {
-              allBlogArticles.map((article) => (
-                <ArticleCard article={article} />
-              ))
-            }
-          </div>
-        </section>
-      </div>
-    </section>
-  </Layout>
-</PostHogLayout>
+      <section class="mt-16" aria-labelledby="latest-articles">
+        <div class="mb-8">
+          <p
+            class="text-sm font-semibold uppercase tracking-[0.15em] text-flare"
+          >
+            Latest articles
+          </p>
+
+          <h2
+            id="latest-articles"
+            class="mt-2 text-2xl font-bold tracking-tight text-text md:text-3xl"
+          >
+            Explore our latest insights
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {allBlogArticles.map((article) => <ArticleCard article={article} />)}
+        </div>
+      </section>
+    </div>
+  </section>
+</Layout>
